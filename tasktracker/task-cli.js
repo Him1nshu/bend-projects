@@ -87,3 +87,16 @@ else if (command == 'mark-in-progress' || command == 'mark-done') {
         console.log("Task not found");
     }
 }
+else if(command=='list'){
+    const type=process.argv[3];
+    tasks.filter(task => task.status == 'done');
+    if(tasks.length!=0){
+    console.log(tasks);
+    }
+    else{
+        console.log("no tasks found");
+    }
+}
+else{
+    console.log("wrong command");
+}
