@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": 1,
+    "description": "learn nodeJS",
+    "status": "todo",
+    "createdAt": "2026-08-16T10:32:26.807Z",
+    "updatedAt": "2026-08-16T10:32:26.807Z"
+  },
+  {
+    "id": 2,
+    "description": "learn express framework",
+    "status": "todo",
+    "createdAt": "2026-08-16T10:44:37.192Z",
+    "updatedAt": "2026-08-16T10:45:15.057Z"
+  }
+]
