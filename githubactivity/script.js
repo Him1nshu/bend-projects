@@ -15,4 +15,8 @@ const response = await octokit.request(
 
 const data = response.data;
 
-console.log(data);
+for (const event of data){
+    if(event.type=="PushEvent"){
+        console.log("Pushed commits to " + event.repo.name);
+    }
+}
