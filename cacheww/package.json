@@ -1,0 +1,15 @@
+{
+  "name": "cacheww",
+  "version": "1.0.0",
+  "description": "after this i know, \r how caching works and how I can build a caching proxy server to cache responses from other servers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
