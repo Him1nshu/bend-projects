@@ -2,26 +2,27 @@ const express=require('express');
 const app=express();
 
 const cache={};
+const port=process.argv[3];
+const origin=process.argv[5]; 
 
-app.get("/",(req,res)=>{
-    res.end("ehllo");
 
-})
 
-app.get("/products", async (req,res)=>{
+app.use(async (req,res)=>{
 
-    if(cache["/products"]!=null){
-        res.json(cache["/products"]);
+    if(cache[req.path]!=null){
+        res.set("X-Cache", "HIT");
+        res.json(cache[req.path]);
     }
     else{
-    const response= await fetch("https://dummyjson.com/products");
+    res.set("X-Cache", "MISS");
+    const response= await fetch(origin+req.path);
     const data= await response.json();
-    cache["/products"]=data;
-    res.json(data);
+    cache[req.path]=data;
+    res.write(data);
     }
 })
 
 
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log("port running");
 })
