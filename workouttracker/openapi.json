@@ -1,0 +1,22 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Workout Tracker API", "version": "1.0.0", "description": "JWT-authenticated workout planning and progress tracking API." },
+  "servers": [{ "url": "http://localhost:3000" }],
+  "components": {
+    "securitySchemes": { "bearerAuth": { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" } },
+    "schemas": {
+      "ExerciseInput": { "type": "object", "required": ["exerciseId", "sets", "repetitions"], "properties": { "exerciseId": { "type": "integer" }, "sets": { "type": "integer", "minimum": 1 }, "repetitions": { "type": "integer", "minimum": 1 }, "weight": { "type": "number", "minimum": 0 } } },
+      "Workout": { "type": "object", "required": ["name", "scheduledAt", "exercises"], "properties": { "name": { "type": "string" }, "scheduledAt": { "type": "string", "format": "date-time" }, "comments": { "type": "string" }, "status": { "type": "string", "enum": ["pending", "active", "completed"] }, "exercises": { "type": "array", "items": { "$ref": "#/components/schemas/ExerciseInput" } } } }
+    }
+  },
+  "paths": {
+    "/api/auth/signup": { "post": { "summary": "Create an account and return a JWT", "requestBody": { "required": true, "content": { "application/json": { "example": { "email": "alex@example.com", "password": "password123" } } } }, "responses": { "201": { "description": "Created" }, "400": { "description": "Invalid input" }, "409": { "description": "Email already registered" } } } },
+    "/api/auth/login": { "post": { "summary": "Authenticate and return a JWT", "responses": { "200": { "description": "Authenticated" }, "401": { "description": "Invalid credentials" } } } },
+    "/api/auth/logout": { "post": { "security": [{ "bearerAuth": [] }], "summary": "End the client session", "responses": { "204": { "description": "Logged out" } } } },
+    "/api/exercises": { "get": { "summary": "List seeded exercises", "responses": { "200": { "description": "Exercise list" } } } },
+    "/api/workouts": { "get": { "security": [{ "bearerAuth": [] }], "summary": "List the current user's workouts, sorted by schedule" }, "post": { "security": [{ "bearerAuth": [] }], "summary": "Create a workout plan", "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Workout" } } } } } },
+    "/api/workouts/{id}": { "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }], "get": { "security": [{ "bearerAuth": [] }], "summary": "Get an owned workout" }, "patch": { "security": [{ "bearerAuth": [] }], "summary": "Update an owned workout" }, "delete": { "security": [{ "bearerAuth": [] }], "summary": "Delete an owned workout" } },
+    "/api/workouts/{id}/logs": { "post": { "security": [{ "bearerAuth": [] }], "summary": "Record a completed workout" } },
+    "/api/reports/progress": { "get": { "security": [{ "bearerAuth": [] }], "summary": "Summarize completed workout logs" } }
+  }
+}
