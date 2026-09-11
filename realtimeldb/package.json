@@ -1,0 +1,20 @@
+{
+  "name": "realtimeldb",
+  "version": "1.0.0",
+  "description": "I have a good understanding of how to create a real-time leaderboard system that updates scores in real-time. \r I also gained experience working with Redis sorted sets and implementing user authentication and score submission features.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.10.0",
+    "pg": "^8.23.0"
+  }
+}
