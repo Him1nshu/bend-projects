@@ -15,3 +15,6 @@ When a request needs PostgreSQL, it borrows one.
 1.always require("dotenv").config() at the top
 2.always borrow app.js here
 3.listen to the port
+
+## routes
+1.always reuqire express and its router
