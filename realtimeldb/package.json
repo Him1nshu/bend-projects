@@ -4,7 +4,8 @@
   "description": "I have a good understanding of how to create a real-time leaderboard system that updates scores in real-time. \r I also gained experience working with Redis sorted sets and implementing user authentication and score submission features.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "node --check server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.10.0",
-    "pg": "^8.23.0"
+    "pg": "^8.23.0",
+    "redis": "^6.2.1"
   }
 }
